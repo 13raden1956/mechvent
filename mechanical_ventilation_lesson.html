@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Mechanical Ventilation — Pulmonary & Critical Care Fellows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f7f6f3;
+    --bg-tertiary: #f0efe9;
+    --text: #1a1a18;
+    --text-secondary: #5a5a56;
+    --text-tertiary: #8a8a84;
+    --border: rgba(0,0,0,0.12);
+    --border-med: rgba(0,0,0,0.18);
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --blue-50: #E6F1FB; --blue-200: #85B7EB; --blue-400: #378ADD;
+    --blue-600: #185FA5; --blue-800: #0C447C; --blue-900: #042C53;
+    --teal-50: #E1F5EE; --teal-400: #1D9E75; --teal-600: #0F6E56;
+    --teal-800: #085041; --teal-900: #04342C;
+    --coral-50: #FAECE7; --coral-400: #D85A30; --coral-600: #993C1D;
+    --coral-800: #712B13; --coral-900: #4A1B0C;
+    --amber-50: #FAEEDA; --amber-400: #EF9F27; --amber-600: #854F0B;
+    --amber-800: #633806; --amber-900: #412402;
+    --purple-50: #EEEDFE; --purple-400: #7F77DD; --purple-600: #534AB7;
+    --purple-800: #3C3489; --purple-900: #26215C;
+    --green-50: #EAF3DE; --green-400: #639922; --green-600: #3B6D11;
+    --green-800: #27500A; --green-900: #173404;
+    --gray-50: #F1EFE8; --gray-200: #B4B2A9; --gray-400: #888780;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-tertiary);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--border-med);
+  }
+  .page-header .eyebrow {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 6px;
+  }
+  .page-header h1 {
+    font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 4px;
+  }
+  .page-header p {
+    font-size: 14px; color: var(--text-secondary);
+  }
+
+  /* TOP NAV */
+  .top-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .top-nav button {
+    padding: 7px 16px; font-size: 13px; font-weight: 500;
+    border: 0.5px solid var(--border-med); border-radius: var(--radius-md);
+    background: var(--bg); color: var(--text-secondary);
+    cursor: pointer; transition: all 0.15s; font-family: inherit;
+  }
+  .top-nav button:hover { background: var(--bg-secondary); color: var(--text); }
+  .top-nav button.active { background: var(--blue-600); color: #fff; border-color: var(--blue-600); }
+
+  /* SUB NAV */
+  .sub-nav { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .sub-nav button {
+    padding: 5px 12px; font-size: 12px; font-weight: 500;
+    border: 0.5px solid var(--border); border-radius: var(--radius-md);
+    background: var(--bg-secondary); color: var(--text-secondary);
+    cursor: pointer; transition: all 0.15s; font-family: inherit;
+  }
+  .sub-nav button:hover { background: var(--bg-tertiary); }
+  .sub-nav button.active { background: var(--bg); color: var(--text); border-color: var(--border-med); font-weight: 600; }
+
+  /* SECTIONS */
+  .main-section { display: none; }
+  .main-section.active { display: block; animation: fadeIn 0.2s ease; }
+  .sub-section { display: none; }
+  .sub-section.active { display: block; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+
+  .section-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .section-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+  /* CARDS */
+  .card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 1rem 0; }
+  @media (max-width: 550px) { .three-col { grid-template-columns: 1fr; } }
+
+  /* BADGES & PILLS */
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: var(--radius-md); }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+  .blue  { background: var(--blue-50);   color: var(--blue-800); }
+  .teal  { background: var(--teal-50);   color: var(--teal-800); }
+  .coral { background: var(--coral-50);  color: var(--coral-800); }
+  .amber { background: var(--amber-50);  color: var(--amber-800); }
+  .purple{ background: var(--purple-50); color: var(--purple-800); }
+  .green { background: var(--green-50);  color: var(--green-800); }
+
+  /* KEY ROWS */
+  .krow { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0; }
+  .kdot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .dot-blue   { background: var(--blue-400); }
+  .dot-teal   { background: var(--teal-400); }
+  .dot-coral  { background: var(--coral-400); }
+  .dot-amber  { background: var(--amber-400); }
+  .dot-purple { background: var(--purple-400); }
+  .dot-green  { background: var(--green-400); }
+  .dot-gray   { background: var(--gray-400); }
+  .klabel { font-size: 13px; font-weight: 600; color: var(--text); }
+  .kval   { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* BODY TEXT */
+  .body { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+  .body strong { color: var(--text); font-weight: 600; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 1rem 0; }
+
+  /* HIGHLIGHT BOXES */
+  .hbox {
+    background: var(--blue-50); border-left: 3px solid var(--blue-600);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 10px 14px; margin: 10px 0;
+  }
+  .hbox p { font-size: 13px; color: var(--blue-800); line-height: 1.6; }
+  .hbox strong { color: var(--blue-900); font-weight: 600; }
+  .warn {
+    background: var(--amber-50); border-left: 3px solid var(--amber-600);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 10px 14px; margin: 10px 0;
+  }
+  .warn p { font-size: 13px; color: var(--amber-800); line-height: 1.6; }
+  .warn strong { color: var(--amber-900); font-weight: 600; }
+
+  /* TABLES */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+  .tbl th {
+    text-align: left; padding: 8px 10px;
+    background: var(--bg-secondary); color: var(--text-secondary);
+    font-weight: 600; border-bottom: 0.5px solid var(--border);
+  }
+  .tbl td {
+    padding: 8px 10px; border-bottom: 0.5px solid var(--border);
+    color: var(--text); vertical-align: top;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+
+  /* PHASE BAR */
+  .phase-bar { display: flex; border-radius: var(--radius-md); overflow: hidden; height: 34px; margin: 10px 0; }
+  .phase-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+
+  /* TLC CARDS */
+  .tlc-card { border-radius: var(--radius-lg); padding: 14px; border: 0.5px solid var(--border); }
+  .tlc-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .tlc-sub  { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+  .tlc-desc { font-size: 12px; line-height: 1.5; }
+
+  /* COMPARE CALLOUT */
+  .callout {
+    background: var(--bg-secondary); border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem;
+  }
+  .callout-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+
+  /* FOOTER NOTE */
+  .footnote { font-size: 12px; color: var(--text-tertiary); margin-top: 2rem; padding-top: 1rem; border-top: 0.5px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-header">
+    <div class="eyebrow">Pulmonary &amp; Critical Care Fellowship — Didactic Series</div>
+    <h1>Introduction to Mechanical Ventilation</h1>
+    <p>A framework-based introduction to ventilator mechanics, modes, and advanced NIV concepts</p>
+  </div>
+
+  <!-- TOP NAV -->
+  <div class="top-nav">
+    <button class="active" onclick="showMain('anatomy', this)">1. Ventilator anatomy</button>
+    <button onclick="showMain('tlc', this)">2. Trigger · Limit · Cycle</button>
+    <button onclick="showMain('modes', this)">3. Modes &amp; history</button>
+    <button onclick="showMain('advanced', this)">4. BiPAP · APRV · AVAPS</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 1: ANATOMY -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="main-section active" id="m-anatomy">
+    <div class="section-title">Ventilator anatomy &amp; physiology</div>
+    <div class="section-sub">How ICU and transport/ED ventilators work mechanically</div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title"><span class="badge blue">ICU ventilator</span></div>
+        <div class="body">Microprocessor-driven flow control valves on both inspiratory and expiratory limbs allow precise, real-time modulation of gas delivery. Gas is drawn from wall-piped O₂ and air blended at the machine.</div>
+        <div class="divider"></div>
+        <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Pneumatic source</div><div class="kval">High-pressure wall gas (50 psi); internal blender</div></div></div>
+        <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Flow control</div><div class="kval">Proportional solenoid/servo valve — millisecond feedback loop</div></div></div>
+        <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Expiratory valve</div><div class="kval">Active PEEP valve; adjustable to maintain end-expiratory pressure</div></div></div>
+        <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Monitoring</div><div class="kval">Continuous flow, pressure, and volume waveforms; loops; alarms</div></div></div>
+        <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">Trigger sensitivity</div><div class="kval">Flow-trigger (≥1–3 L/min) or pressure-trigger; highly responsive</div></div></div>
+        <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">Examples</div><div class="kval">PB 980/840, Draeger Evita, Hamilton G5/C6</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="badge coral">ED / transport ventilator</span></div>
+        <div class="body">Simpler pneumatic or turbine-driven systems optimized for portability and durability. Fewer modes, coarser flow control, often lacking advanced waveform analytics.</div>
+        <div class="divider"></div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Pneumatic source</div><div class="kval">Compressed O₂ cylinder (turbine models can use ambient air)</div></div></div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Flow control</div><div class="kval">Fixed-orifice pneumatics or blower turbine — less precise modulation</div></div></div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Expiratory valve</div><div class="kval">Spring-loaded passive or simple threshold PEEP valve</div></div></div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Monitoring</div><div class="kval">Basic pressure gauge ± SpO₂; limited waveform display</div></div></div>
+        <div class="krow"><div class="kdot dot-amber"></div><div><div class="klabel">Trigger sensitivity</div><div class="kval">Often pressure-trigger only; higher thresholds → more trigger work</div></div></div>
+        <div class="krow"><div class="kdot dot-amber"></div><div><div class="klabel">Examples</div><div class="kval">LTV 1200, ReVel, Zoll 731</div></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">The breath cycle — four universal phases</div>
+      <div class="phase-bar">
+        <div class="phase-seg" style="background:#B5D4F4; color:#042C53; flex:2;">Trigger</div>
+        <div class="phase-seg" style="background:#378ADD; color:#fff; flex:3;">Inspiration (limit governs)</div>
+        <div class="phase-seg" style="background:#185FA5; color:#fff; flex:1.5;">Cycle off</div>
+        <div class="phase-seg" style="background:#B4B2A9; color:#2C2C2A; flex:3;">Expiration (passive)</div>
+      </div>
+      <div class="body">Every mechanical breath — regardless of mode — passes through four phases: <strong>trigger → inspiration → cycle → expiration.</strong> The ventilator opens the inspiratory valve, gas flows into the lungs, a cycling criterion terminates inspiration, and the expiratory valve opens passively. PEEP is maintained by the threshold expiratory valve.</div>
+      <div class="divider"></div>
+      <div class="body"><strong>Key mechanical difference:</strong> ICU ventilators recalculate flow targets at every 2–5 ms sample interval, enabling breath-to-breath adaptation, pressure-volume loop display, and leak compensation. Transport vents deliver a fixed breath profile — safer for a moving vehicle but far less adaptable to changing patient mechanics.</div>
+    </div>
+
+    <div class="hbox"><p><strong>Clinical pearl:</strong> When a patient is transported from the ED to the ICU, always re-evaluate ventilator settings on arrival. Transport vents often mask high peak pressures, auto-PEEP, and patient-ventilator dyssynchrony that become apparent only on ICU-grade waveform monitoring.</p></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 2: TLC -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="main-section" id="m-tlc">
+    <div class="section-title">Trigger · Limit · Cycle</div>
+    <div class="section-sub">The universal language of mechanical ventilation — applies to every mode and every ventilator</div>
+
+    <div class="three-col">
+      <div class="tlc-card" style="background:var(--blue-50); border-color:#B5D4F4;">
+        <div class="tlc-name" style="color:var(--blue-900);">Trigger</div>
+        <div class="tlc-sub" style="color:var(--blue-800);">What starts the breath?</div>
+        <div class="tlc-desc" style="color:var(--blue-800);">The signal — patient effort or timer — that opens the inspiratory valve.</div>
+      </div>
+      <div class="tlc-card" style="background:var(--teal-50); border-color:#9FE1CB;">
+        <div class="tlc-name" style="color:var(--teal-900);">Limit</div>
+        <div class="tlc-sub" style="color:var(--teal-800);">What constrains inspiration?</div>
+        <div class="tlc-desc" style="color:var(--teal-800);">The maximum value of flow or pressure that cannot be exceeded during inspiration.</div>
+      </div>
+      <div class="tlc-card" style="background:var(--coral-50); border-color:#F5C4B3;">
+        <div class="tlc-name" style="color:var(--coral-900);">Cycle</div>
+        <div class="tlc-sub" style="color:var(--coral-800);">What ends the breath?</div>
+        <div class="tlc-desc" style="color:var(--coral-800);">The criterion — volume, time, flow %, or pressure — that terminates inspiration.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="badge blue">Trigger</span> — starting the breath</div>
+      <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Time trigger (mandatory)</div><div class="kval">The ventilator timer expires (e.g., set rate 12/min → breath every 5 sec). No patient effort required. Used in fully controlled modes or apnoeic patients.</div></div></div>
+      <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">Patient trigger (assisted)</div><div class="kval">Patient effort detected as either a pressure drop below PEEP (pressure trigger, –1 to –2 cmH₂O) or an inspiratory flow deflection (flow trigger, 1–3 L/min). Flow triggering reduces trigger work by ~50%.</div></div></div>
+      <div class="hbox"><p><strong>Clinical relevance:</strong> Too sensitive → auto-triggering (cardiac oscillations, water in circuit). Too insensitive → increased work of breathing and fatigue.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="badge teal">Limit</span> — governing the inspiratory phase</div>
+      <div class="body" style="margin-bottom:10px;">The limit variable is held at or below a maximum value throughout inspiration — but reaching the limit alone does not end the breath (that is cycling's job).</div>
+      <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">Flow limit (Volume Control)</div><div class="kval">Gas delivered at a set constant or decelerating flow. Pressure rises as a consequence. The flow is limited — cannot exceed the set value.</div></div></div>
+      <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Pressure limit (Pressure Control / PSV)</div><div class="kval">Inspiratory pressure is capped at a set value above PEEP. Flow varies freely and decelerates as the lung fills. Volume is a consequence.</div></div></div>
+      <div class="hbox"><p><strong>Clinical relevance:</strong> In pressure-limited breaths, tidal volume is <em>not</em> guaranteed — it depends on compliance and resistance. In flow-limited (volume control) breaths, volume is guaranteed but peak pressure varies with mechanics.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="badge coral">Cycle</span> — ending the breath</div>
+      <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Volume cycle</div><div class="kval">Breath ends when a set tidal volume has been delivered. Standard in Volume Control. Guarantees Vt regardless of mechanics.</div></div></div>
+      <div class="krow"><div class="kdot dot-amber"></div><div><div class="klabel">Time cycle</div><div class="kval">Breath ends after a set inspiratory time. Used in Pressure Control. Ti is set explicitly — gives the clinician direct control of I:E ratio.</div></div></div>
+      <div class="krow"><div class="kdot dot-purple"></div><div><div class="klabel">Flow cycle (% peak)</div><div class="kval">Breath ends when inspiratory flow decays to a threshold (often 25% of peak). Used in PSV, BiPAP, and AVAPS. Tracks the patient's own neural inspiratory effort — most physiologically synchronized.</div></div></div>
+      <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Pressure cycle</div><div class="kval">Breath ends if circuit pressure exceeds a safety limit. Acts as a safety ceiling, not a primary cycle mechanism.</div></div></div>
+      <div class="hbox"><p><strong>Key insight — why flow-cycling matches who is in charge:</strong> Flow cycling lets the patient's own neural effort define breath duration. Time cycling lets the clinician define breath duration. Use flow-cycling when the patient drives the breath; time-cycling when they cannot be relied upon to do so.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Why PC is time-cycled and PSV/BiPAP are flow-cycled</div>
+      <div class="body">In Pressure Control, the clinician is delivering a <strong>mandatory breath</strong> — possibly to an apneic or paralyzed patient. There is no reliable neural signal to detect. Time-cycling gives the clinician certainty about Ti and I:E ratio.</div>
+      <div class="divider"></div>
+      <div class="body">In PSV and BiPAP, the <strong>patient initiated</strong> the breath. The decay in inspiratory flow reflects waning neural effort — the patient's own respiratory system signaling "I'm done inspiring." Flow-cycling lets the machine track that biological signal rather than an arbitrary clock.</div>
+      <div class="warn"><p><strong>When the backup rate fires in BiPAP/AVAPS:</strong> The mode switches mid-breath from flow-cycled (PSV behavior) to time-cycled (PC behavior). The backup Ti you set becomes the operative cycling mechanism. Set it deliberately — if the patient becomes apneic, the backup Ti is the only thing controlling inspiratory time.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 3: MODES -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="main-section" id="m-modes">
+    <div class="section-title">Modes of ventilation</div>
+    <div class="section-sub">History, meaning, and relationship to trigger · limit · cycle</div>
+
+    <div class="sub-nav">
+      <button class="active" onclick="showSub('modes', 'vc', this)">Volume Control</button>
+      <button onclick="showSub('modes', 'pc', this)">Pressure Control</button>
+      <button onclick="showSub('modes', 'ac', this)">Assist-Control</button>
+      <button onclick="showSub('modes', 'summary', this)">Summary table</button>
+    </div>
+
+    <!-- VC -->
+    <div class="sub-section active" id="modes-vc">
+      <div class="card">
+        <div class="card-title"><span class="badge blue">Volume Control (VC)</span></div>
+        <div class="body"><strong>History:</strong> Volume-cycled ventilation dates to the Emerson post-polio iron lungs of the 1950s and positive-pressure machines of the 1960s. The principle: deliver a fixed tidal volume, let pressure vary. Widely adopted after the ARDSNet trial (2000) demonstrated that targeting Vt 6 mL/kg IBW reduced mortality — a trial conducted in volume control.</div>
+        <div class="divider"></div>
+        <table class="tbl">
+          <tr><th style="width:22%;">Phase</th><th style="width:30%;">Variable</th><th>Detail</th></tr>
+          <tr><td><span class="pill blue">Trigger</span></td><td>Time or patient effort</td><td>Minimum mandatory rate set; patient can trigger additional breaths above the set rate</td></tr>
+          <tr><td><span class="pill teal">Limit</span></td><td>Flow</td><td>Set flow rate (constant square-wave or descending ramp). Pressure is NOT limited — it rises with lung stiffness</td></tr>
+          <tr><td><span class="pill coral">Cycle</span></td><td>Volume</td><td>Breath ends when set Vt is delivered. Ti is derived (Vt ÷ Flow) — not directly set or guaranteed</td></tr>
+        </table>
+        <div class="hbox" style="margin-top:10px;"><p><strong>Clinical pearls:</strong> VC guarantees Vt — useful for precise lung-protective ventilation and monitoring plateau pressure (Pplat). If compliance worsens acutely, peak/plateau pressures rise. Constant-flow waveform may worsen patient-ventilator dyssynchrony versus decelerating flow.</p></div>
+        <div class="warn"><p><strong>Common misconception:</strong> Ti is not directly set or guaranteed in VC. It is derived from Vt ÷ Flow. If you set 500 mL at 60 L/min, Ti = 0.5 s — but it emerges from those settings, it is not a primary set parameter. Ti is directly set and guaranteed only in Pressure Control.</p></div>
+      </div>
+    </div>
+
+    <!-- PC -->
+    <div class="sub-section" id="modes-pc">
+      <div class="card">
+        <div class="card-title"><span class="badge teal">Pressure Control (PC)</span></div>
+        <div class="body"><strong>History:</strong> Pressure-limited, time-cycled ventilation was pioneered in neonatal care in the 1970s–80s where small uncuffed ETTs made volume delivery imprecise. It gained popularity in adult ARDS management in the 1990s as a means of capping peak airway pressure and generating a more physiological decelerating flow waveform.</div>
+        <div class="divider"></div>
+        <table class="tbl">
+          <tr><th style="width:22%;">Phase</th><th style="width:30%;">Variable</th><th>Detail</th></tr>
+          <tr><td><span class="pill blue">Trigger</span></td><td>Time or patient effort</td><td>Mandatory rate set; patient triggering allowed</td></tr>
+          <tr><td><span class="pill teal">Limit</span></td><td>Pressure (ΔP)</td><td>Set driving pressure above PEEP. Flow decelerates as alveolar and circuit pressures equilibrate. Vt is NOT set — it is a consequence of ΔP, compliance, and resistance</td></tr>
+          <tr><td><span class="pill coral">Cycle</span></td><td>Time (Ti)</td><td>Ti is directly set and guaranteed. Breath ends when the timer expires, regardless of volume delivered. I:E ratio is under direct clinician control</td></tr>
+        </table>
+        <div class="hbox" style="margin-top:10px;"><p><strong>Clinical pearls:</strong> Driving pressure (ΔP = Pplat − PEEP) is a key predictor of ARDS mortality — PC makes ΔP immediately visible as the set parameter. Critical caveat: if compliance improves (e.g., prone positioning), Vt can increase dramatically — monitor closely.</p></div>
+      </div>
+    </div>
+
+    <!-- A/C -->
+    <div class="sub-section" id="modes-ac">
+      <div class="card">
+        <div class="card-title"><span class="badge purple">Assist-Control (A/C)</span></div>
+        <div class="body"><strong>History:</strong> A/C emerged in the 1970s as an evolution of controlled mandatory ventilation (CMV). CMV delivered only time-triggered breaths — patients who tried to breathe spontaneously between machine breaths would "fight" the vent. A/C solved this: every patient effort that crosses the trigger threshold delivers a full assisted breath at the same set parameters as the mandatory breath.</div>
+        <div class="divider"></div>
+        <div class="body" style="margin-bottom:10px;"><strong>A/C is a trigger strategy, not a standalone mode — it is applied to either VC or PC:</strong></div>
+        <table class="tbl">
+          <tr><th style="width:20%;">Full name</th><th style="width:22%;">Trigger</th><th style="width:20%;">Limit</th><th style="width:20%;">Cycle</th></tr>
+          <tr>
+            <td><strong>A/C-VC</strong></td>
+            <td><span class="pill blue">Time</span> or <span class="pill purple">Patient</span></td>
+            <td><span class="pill teal">Flow</span></td>
+            <td><span class="pill coral">Volume</span></td>
+          </tr>
+          <tr>
+            <td><strong>A/C-PC</strong></td>
+            <td><span class="pill blue">Time</span> or <span class="pill purple">Patient</span></td>
+            <td><span class="pill teal">Pressure</span></td>
+            <td><span class="pill coral">Time</span></td>
+          </tr>
+        </table>
+        <div class="divider"></div>
+        <div class="krow"><div class="kdot dot-purple"></div><div><div class="klabel">Guaranteed minimum rate</div><div class="kval">Time-trigger fires if patient rate falls below the set backup rate — ensures minimum minute ventilation even in apnoea.</div></div></div>
+        <div class="krow"><div class="kdot dot-purple"></div><div><div class="klabel">Full assist on every breath</div><div class="kval">Unlike SIMV, every patient-triggered breath receives full ventilator support at the set parameters — not a spontaneous unsupported breath.</div></div></div>
+        <div class="hbox" style="margin-top:10px;"><p><strong>Clinical pearls:</strong> Tachypnoea in A/C delivers full Vt with every breath → risk of breath stacking, dynamic hyperinflation, and respiratory alkalosis. Address the root cause of tachypnoea (pain, anxiety, acidosis) — don't just increase sedation.</p></div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="sub-section" id="modes-summary">
+      <div class="card">
+        <div class="card-title">Summary — all invasive modes</div>
+        <table class="tbl">
+          <tr><th style="width:18%;">Mode</th><th>Trigger</th><th>Limit</th><th>Cycle</th><th>Guaranteed</th><th>Variable</th></tr>
+          <tr><td><strong>VC</strong></td><td>Time / patient</td><td>Flow</td><td>Volume</td><td>Vt</td><td>Peak Paw, Ti*</td></tr>
+          <tr><td><strong>PC</strong></td><td>Time / patient</td><td>Pressure (ΔP)</td><td>Time</td><td>ΔP, Ti</td><td>Vt, Flow</td></tr>
+          <tr><td><strong>PSV</strong></td><td>Patient only</td><td>Pressure (PS)</td><td>Flow %</td><td>ΔP</td><td>Vt, Ti, Rate</td></tr>
+          <tr><td><strong>A/C-VC</strong></td><td>Time + patient</td><td>Flow</td><td>Volume</td><td>Min rate, Vt</td><td>Total rate, Paw, Ti*</td></tr>
+          <tr><td><strong>A/C-PC</strong></td><td>Time + patient</td><td>Pressure</td><td>Time</td><td>Min rate, ΔP, Ti</td><td>Total rate, Vt</td></tr>
+        </table>
+        <div class="body" style="margin-top:10px; font-size:12px; color:var(--text-tertiary);">*Ti in VC is derived (Vt ÷ Flow), not directly set. It is a consequence, not a primary guaranteed parameter.</div>
+      </div>
+      <div class="hbox"><p><strong>Universal decoder:</strong> For any mode, ask: (1) What triggers this breath? (2) What variable is limited during inspiration? (3) What ends the breath? Those three answers decode any mode — including proprietary names like PRVC, AutoFlow, PAV+, or ASV.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SECTION 4: ADVANCED -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="main-section" id="m-advanced">
+    <div class="section-title">Advanced modes: BiPAP · APRV · AVAPS</div>
+    <div class="section-sub">Non-invasive and complex modes decoded through the trigger · limit · cycle framework</div>
+
+    <div class="sub-nav">
+      <button class="active" onclick="showSub('advanced', 'bipap', this)">NIV BiPAP</button>
+      <button onclick="showSub('advanced', 'aprv', this)">APRV</button>
+      <button onclick="showSub('advanced', 'avaps', this)">AVAPS</button>
+      <button onclick="showSub('advanced', 'compare', this)">All modes compared</button>
+    </div>
+
+    <!-- BIPAP -->
+    <div class="sub-section active" id="advanced-bipap">
+      <div class="card">
+        <div class="card-title"><span class="badge blue">NIV BiPAP — what it actually is</span></div>
+        <div class="body">BiPAP delivers two alternating levels of CPAP: IPAP (inspiratory) and EPAP (expiratory). The driving pressure is ΔP = IPAP − EPAP. This is mechanically identical to Pressure Support Ventilation delivered through a non-invasive interface — EPAP functions as PEEP, IPAP is the pressure limit during inspiration.</div>
+        <div class="divider"></div>
+        <table class="tbl">
+          <tr><th style="width:22%;">Phase</th><th style="width:28%;">Variable</th><th>Detail</th></tr>
+          <tr><td><span class="pill blue">Trigger</span></td><td>Patient flow effort</td><td>Flow trigger — patient effort drops circuit flow below baseline. Backup time-trigger fires if apnoea occurs.</td></tr>
+          <tr><td><span class="pill teal">Limit</span></td><td>Pressure (IPAP)</td><td>Circuit pressure limited to IPAP. Flow decelerates as lung pressure rises — identical waveform to PSV.</td></tr>
+          <tr><td><span class="pill coral">Cycle</span></td><td>Flow % of peak</td><td>Breath ends when inspiratory flow decays to ~25–30% of peak. Machine drops back to EPAP. Adjustable as expiratory trigger sensitivity (ETS).</td></tr>
+        </table>
+        <div class="divider"></div>
+        <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">Leak compensation</div><div class="kval">Unlike invasive vents, NIV machines actively compensate for mask leak. Critical for maintaining EPAP and detecting true patient effort through a leaking circuit.</div></div></div>
+        <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">Rise time</div><div class="kval">Controls how quickly pressure rises from EPAP to IPAP. Faster = more flow early = better for high-demand patients (COPD, APE). Slower = more comfortable for OSA.</div></div></div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Expiratory trigger sensitivity (ETS)</div><div class="kval">The flow-cycle threshold. In COPD, flow decays slowly — low ETS causes delayed cycling (patient exhales against IPAP). Increasing ETS corrects this.</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">When the backup rate fires — the critical scenario</div>
+        <div class="body" style="margin-bottom:10px;">When patient's spontaneous rate falls below the backup rate, the ventilator switches from flow-cycled assisted breaths to time-cycled mandatory breaths:</div>
+        <table class="tbl">
+          <tr><th>Situation</th><th>Trigger</th><th>Limit</th><th>Cycle</th></tr>
+          <tr><td>Patient rate &gt; backup rate</td><td>Patient flow</td><td>IPAP</td><td><span class="pill coral">Flow % — patient controls Ti</span></td></tr>
+          <tr><td>Patient rate &lt; backup rate</td><td>Time</td><td>IPAP</td><td><span class="pill amber">Time — set Ti controls breath</span></td></tr>
+        </table>
+        <div class="warn" style="margin-top:10px;"><p><strong>Clinical implication:</strong> The backup Ti is not a throwaway setting. When backup fires, BiPAP becomes Pressure Control. Set the backup Ti as deliberately as you would set Ti in a PC mode — typically 0.8–1.2 s for adults. Ask yourself: "If this patient becomes apneic overnight, what breath will they receive?"</p></div>
+      </div>
+      <div class="hbox"><p><strong>Conceptual anchor:</strong> BiPAP on a dedicated NIV device = PSV through a mask with leak compensation. The leak-handling algorithm is the key engineering difference. The breath physics are identical.</p></div>
+      <div class="warn"><p><strong>Common misconception:</strong> "BiPAP" is a Respironics trade name. On other devices the same physiology may be called NIV-PS, BiLevel, or DuoPAP. Always decode: what is IPAP, EPAP, and how is cycling determined?</p></div>
+    </div>
+
+    <!-- APRV -->
+    <div class="sub-section" id="advanced-aprv">
+      <div class="card">
+        <div class="card-title"><span class="badge purple">APRV — Airway Pressure Release Ventilation</span></div>
+        <div class="body">APRV applies a prolonged high pressure (P-high, held for T-high, typically 4–6 seconds) to recruit and maintain lung volume, then briefly releases to a low pressure (P-low, held for T-low, typically 0.4–0.8 seconds) for CO₂ elimination. The patient breathes spontaneously throughout — primarily during P-high. Oxygenation is maintained by sustained high mean airway pressure; ventilation occurs during the release.</div>
+        <div class="divider"></div>
+        <div class="phase-bar">
+          <div class="phase-seg" style="background:#CECBF6; color:#26215C; flex:6;">P-high (T-high ~5 s) — spontaneous breathing during this phase</div>
+          <div class="phase-seg" style="background:#534AB7; color:#fff; flex:0.6;">Release (T-low ~0.5 s)</div>
+        </div>
+        <table class="tbl">
+          <tr><th style="width:22%;">Phase</th><th style="width:28%;">Variable</th><th>Detail</th></tr>
+          <tr><td><span class="pill purple">Trigger</span></td><td>Time (primarily)</td><td>Transition from P-low back to P-high is time-triggered (T-low timer). Spontaneous breaths on P-high are patient-triggered, flow-cycled (PSV superimposed on CPAP).</td></tr>
+          <tr><td><span class="pill purple">Limit</span></td><td>Pressure (P-high / P-low)</td><td>Both phases are pressure-limited. During T-high, P-high is the ceiling. During release, P-low is the floor (often 0 cmH₂O, but short T-low prevents full derecruitment).</td></tr>
+          <tr><td><span class="pill purple">Cycle</span></td><td>Time (T-high / T-low)</td><td>T-high ends the sustained inflation phase; T-low ends the release. Both are time-cycled. APRV is mechanically a variant of time-cycled Pressure Control with an inverted I:E ratio (~10:1 to 12:1).</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">T-low — the most critical and most mismanaged parameter</div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">T-low too long</div><div class="kval">Full exhalation → alveolar collapse → derecruitment. Defeats the purpose of APRV.</div></div></div>
+        <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">T-low appropriately short (0.4–0.8 s)</div><div class="kval">Terminate before collapse — residual gas maintains alveolar recruitment. The lung never fully deflates. Target: end T-low when expiratory flow has decayed to 50–75% of peak expiratory flow.</div></div></div>
+        <div class="krow"><div class="kdot dot-amber"></div><div><div class="klabel">T-low too short</div><div class="kval">Insufficient CO₂ clearance; progressive gas trapping and intrinsic PEEP.</div></div></div>
+        <div class="hbox"><p><strong>Flow-based T-low titration:</strong> Observe peak expiratory flow at the start of T-low on the flow waveform. End T-low when flow has decayed to ~50–75% of that peak. This is a dynamic target — retitrate as lung mechanics change.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-title">History &amp; controversy</div>
+        <div class="body">APRV was described by Stock and Downs in 1987 as a way to support spontaneous breathing at high mean airway pressures. Proponents argue it recruits lung while preserving diaphragm activity and reducing sedation requirements. Critics note the absence of large RCTs demonstrating mortality benefit over lung-protective VC, and that poorly set T-low can worsen lung injury. It remains widely used but debated.</div>
+      </div>
+      <div class="warn"><p><strong>Contraindications / caution:</strong> Obstructive lung disease (air trapping), elevated ICP (high mean Paw impairs cerebral venous drainage), bronchopleural fistula, and absent spontaneous respiratory drive (spontaneous breathing is essential to APRV physiology).</p></div>
+    </div>
+
+    <!-- AVAPS -->
+    <div class="sub-section" id="advanced-avaps">
+      <div class="card">
+        <div class="card-title"><span class="badge green">AVAPS — Average Volume-Assured Pressure Support</span></div>
+        <div class="body">AVAPS (Philips Respironics) — and equivalents iVAPS (ResMed), AutoTrak — is a dual-control mode combining the patient comfort of pressure support with volume targeting. Each individual breath is pressure-limited and flow-cycled (identical to PSV/BiPAP), but the pressure support level automatically adjusts breath-to-breath to achieve a target average tidal volume.</div>
+        <div class="divider"></div>
+        <div class="body" style="margin-bottom:10px;"><strong>Two levels of control operating simultaneously:</strong></div>
+        <table class="tbl">
+          <tr><th style="width:26%;">Level</th><th style="width:24%;">Variable</th><th>Detail</th></tr>
+          <tr><td colspan="3" style="background:var(--bg-secondary); font-weight:600; font-size:12px; color:var(--text-tertiary);">Within each individual breath</td></tr>
+          <tr><td><span class="pill green">Trigger</span></td><td>Patient flow effort</td><td>Flow-triggered, exactly as in BiPAP/PSV. Backup time trigger for apnoea.</td></tr>
+          <tr><td><span class="pill green">Limit</span></td><td>Pressure (current PS level)</td><td>IPAP is the pressure ceiling for that breath. Flow decelerates to maintain it.</td></tr>
+          <tr><td><span class="pill green">Cycle</span></td><td>Flow % of peak</td><td>Breath ends at flow-cycle threshold — identical to PSV/BiPAP.</td></tr>
+          <tr><td colspan="3" style="background:var(--bg-secondary); font-weight:600; font-size:12px; color:var(--text-tertiary);">Breath-to-breath (outer control loop)</td></tr>
+          <tr><td><span class="pill green">Auto-titration</span></td><td>Target Vt</td><td>Algorithm compares measured Vt to target. Vt too low → PS increases. Vt too high → PS decreases. Rate: slow (~1–2 cmH₂O per few breaths) to avoid instability.</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Key parameters</div>
+        <div class="krow"><div class="kdot dot-green"></div><div><div class="klabel">Target Vt</div><div class="kval">The volume the algorithm aims to achieve — an average over multiple breaths, not a per-breath guarantee. Set at 6–8 mL/kg IBW.</div></div></div>
+        <div class="krow"><div class="kdot dot-green"></div><div><div class="klabel">IPAP min / IPAP max</div><div class="kval">The allowable pressure range for auto-titration. Algorithm searches within this window. IPAP max is a safety ceiling against barotrauma.</div></div></div>
+        <div class="krow"><div class="kdot dot-green"></div><div><div class="klabel">EPAP</div><div class="kval">Set manually — not auto-titrated in standard AVAPS. Provides PEEP effect and stents upper airway. Critical for OSA-overlap patients.</div></div></div>
+        <div class="krow"><div class="kdot dot-amber"></div><div><div class="klabel">Backup rate + Ti — critical when apnoea occurs</div><div class="kval">When backup fires, AVAPS switches to time-cycled PC at current IPAP. The Vt auto-titration algorithm may misinterpret changes during backup epochs and make erratic pressure adjustments if backup Ti is poorly matched to passive lung mechanics.</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Clinical niche &amp; history</div>
+        <div class="body">AVAPS was developed around 2006 for chronic NIV in patients with variable or progressive respiratory mechanics — obesity hypoventilation syndrome (OHS), neuromuscular disease (ALS, Duchenne), and hypercapnic COPD. Patients with progressive NMD have declining compliance and strength — AVAPS automatically compensates without manual retitration at every follow-up visit.</div>
+        <div class="divider"></div>
+        <div class="krow"><div class="kdot dot-green"></div><div><div class="klabel">Strongest evidence</div><div class="kval">OHS — RCTs (Masa et al., 2020; Howard et al., 2017) show non-inferiority to fixed-pressure NIV with potential adherence advantages.</div></div></div>
+        <div class="krow"><div class="kdot dot-coral"></div><div><div class="klabel">Less useful acutely</div><div class="kval">The slow breath-to-breath titration algorithm is designed for chronic home use. For acute respiratory failure, fixed BiPAP or ICU PSV is more appropriate.</div></div></div>
+      </div>
+      <div class="hbox"><p><strong>Conceptual anchor:</strong> AVAPS is to PSV what a thermostat is to a heater. Each breath (heater cycle) still runs identically — pressure-limited, flow-cycled. A higher-level controller (thermostat/algorithm) adjusts the pressure setting across breaths based on the gap between measured and target Vt. This "outer loop" is the dual-control concept — identical in principle to invasive PRVC/AutoFlow/VC+.</p></div>
+    </div>
+
+    <!-- COMPARE ALL -->
+    <div class="sub-section" id="advanced-compare">
+      <div class="card">
+        <div class="card-title">All modes — unified trigger · limit · cycle framework</div>
+        <table class="tbl">
+          <tr><th style="width:16%;">Mode</th><th>Trigger</th><th>Limit</th><th>Cycle</th><th>Guaranteed</th><th>Variable</th></tr>
+          <tr><td><strong>VC (A/C)</strong></td><td>Time + patient</td><td><span class="pill blue">Flow</span></td><td><span class="pill coral">Volume</span></td><td>Vt, min rate</td><td>Peak Paw, Ti</td></tr>
+          <tr><td><strong>PC (A/C)</strong></td><td>Time + patient</td><td><span class="pill teal">Pressure</span></td><td><span class="pill amber">Time</span></td><td>ΔP, Ti, min rate</td><td>Vt, flow</td></tr>
+          <tr><td><strong>PSV</strong></td><td>Patient only</td><td><span class="pill teal">Pressure</span></td><td><span class="pill coral">Flow %</span></td><td>ΔP</td><td>Vt, Ti, rate</td></tr>
+          <tr><td><strong>NIV BiPAP</strong></td><td>Patient + backup time</td><td><span class="pill teal">Pressure (IPAP)</span></td><td><span class="pill coral">Flow % + leak comp</span></td><td>ΔP (IPAP−EPAP)</td><td>Vt, Ti, rate</td></tr>
+          <tr><td><strong>APRV</strong></td><td>Time (+ patient on P-high)</td><td><span class="pill purple">Pressure (P-high/P-low)</span></td><td><span class="pill amber">Time (T-high/T-low)</span></td><td>Mean Paw, I:E ratio</td><td>Vt, CO₂ clearance</td></tr>
+          <tr><td><strong>AVAPS</strong></td><td>Patient + backup time</td><td><span class="pill green">Pressure (auto-titrated)</span></td><td><span class="pill coral">Flow %</span></td><td>Target avg Vt</td><td>Per-breath Vt, PS level</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Key conceptual relationships</div>
+        <div class="krow"><div class="kdot dot-blue"></div><div><div class="klabel">NIV BiPAP = PSV through a mask</div><div class="kval">Mechanically identical trigger-limit-cycle structure. The distinguishing features are the interface (no ETT), intentional leak, and leak-compensation algorithms.</div></div></div>
+        <div class="krow"><div class="kdot dot-purple"></div><div><div class="klabel">APRV = PC with extreme I:E inversion</div><div class="kval">If you set PC with Ti = 5 s, Te = 0.5 s, P-high = 25, P-low = 0 — you have APRV. The mode name emphasizes the physiological rationale rather than the mechanics.</div></div></div>
+        <div class="krow"><div class="kdot dot-green"></div><div><div class="klabel">AVAPS = PSV with an outer control loop</div><div class="kval">Each breath is PSV. The algorithm adds a second control layer — adjusting PS level across breaths to chase a Vt target. Analogous to PRVC/AutoFlow/VC+ in invasive ventilation.</div></div></div>
+        <div class="krow"><div class="kdot dot-teal"></div><div><div class="klabel">Invasive PRVC / AutoFlow / VC+ = AVAPS equivalent</div><div class="kval">Same dual-control concept invasively. Key difference: PRVC guarantees Vt per breath; AVAPS targets an average Vt over multiple breaths.</div></div></div>
+      </div>
+
+      <div class="hbox"><p><strong>Universal decoder:</strong> When you encounter any unfamiliar mode name — on any ventilator, invasive or non-invasive — ask: (1) What starts the breath? (2) What is held constant during inspiration? (3) What ends the breath? Those three answers tell you everything about the breath's mechanics, regardless of the proprietary name on the screen.</p></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    Prepared for Pulmonary &amp; Critical Care Fellowship. Framework based on Chatburn RL taxonomy of mechanical ventilation modes. Clinical recommendations consistent with ARDSNet, GOLD, and ATS/ERS guidelines as of 2024.
+  </div>
+</div>
+
+<script>
+  function showMain(id, btn) {
+    document.querySelectorAll('.main-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.top-nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('m-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function showSub(parent, id, btn) {
+    const section = document.getElementById('m-' + parent);
+    section.querySelectorAll('.sub-section').forEach(s => s.classList.remove('active'));
+    section.querySelectorAll('.sub-nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(parent + '-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
